@@ -4,6 +4,7 @@
 
 * [Instructions](#instructions)
 * [Description](#description)
+* [Preview](#preview)
 
 ## Instructions
 
@@ -27,7 +28,11 @@ This project is part of the Udacity Front-End Web Developer Nanodegree Program.
 The [starter project](https://github.com/udacity/fend-project-memory-game) had some HTML and CSS styling to display a static version of the Memory Game project. 
 I needed to convert this project from a static project to an interactive one. In order to do that I had to modify the HTML and CSS files, but primarily the JavaScript file.
 
-###Have fun training your visual memory!###
+## Preview
+
+[Here](https://htmlpreview.github.io/?https://github.com/ChiaraTorta/memory-game-fend-project/blob/master/index.html).
+
+### Have fun training your visual memory! ###
 
 
 
