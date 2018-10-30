@@ -29,7 +29,7 @@ I needed to convert this project from a static project to an interactive one. In
 
 ## Preview
 
-[Here](https://htmlpreview.github.io/?https://github.com/ChiaraTorta/memory-game-fend-project/blob/master/index.html). Have fun!
+[Click here](https://htmlpreview.github.io/?https://github.com/ChiaraTorta/memory-game-fend-project/blob/master/index.html)!
 
 
 
