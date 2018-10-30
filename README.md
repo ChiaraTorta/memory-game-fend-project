@@ -1,5 +1,4 @@
 # Memory Game Project
-
 ## Table of Contents
 
 * [Instructions](#instructions)
@@ -30,9 +29,7 @@ I needed to convert this project from a static project to an interactive one. In
 
 ## Preview
 
-[Here](https://htmlpreview.github.io/?https://github.com/ChiaraTorta/memory-game-fend-project/blob/master/index.html).
-
-### Have fun training your visual memory! ###
+[Here](https://htmlpreview.github.io/?https://github.com/ChiaraTorta/memory-game-fend-project/blob/master/index.html). Have fun!
 
 
 
