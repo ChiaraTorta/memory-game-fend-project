@@ -1,9 +1,5 @@
 /*
  * TODO from  https://review.udacity.com/#!/rubrics/591/view :
- 
- * README
- * Create Git RepositoryS
- * responsive
  */
 
 /*
@@ -18,9 +14,8 @@ let counter = 0;
 let clicks = 0;
 let card1, card2;
 const repeatBtn = document.querySelector('.restart');
-const playAgainBtn = document.querySelector('#playAgain');
-const congratDlg = document.querySelector('.congratulations');
-var gameStarted = false;
+const playAgainBtn = document.querySelector('.w3-button');
+const congratDlg = document.querySelector('#modalDlg.w3-modal');
 let startTime;
 let endTime;
 let timerInterval;
@@ -38,14 +33,15 @@ let starRating;
  * Shuffle cards
  */
 
-shuffledCards = shuffle(cards);
+// shuffle cards when game page starts and hide modal dialog
+let shuffledCards = shuffle(cards);
+congratDlg.style.display="none";
 
 /*
  * Create new template
  */ 
  
-// Loop through each card and create its HTML, add each card's HTML to the page
-// Chiara: can I use the template literal here? 
+// loop through each card and create its HTML, add each card's HTML to the page
 newTemplate();
 
 // delete previous children
@@ -58,19 +54,13 @@ deck.appendChild(fragment);
  * Game 
  */ 
  
-//Reset the counter
+//reset the counter
 document.querySelector('.moves').innerText = 0;
 
 // if the user is not clicking the deck and the card is not already open or matched open the card
 
-/* if (gameStarted) {
-	startTimer()
-} */
-
 deck.addEventListener('click', function(event) {
 	if (event.target.className !== "deck" && event.target.classList.contains('open') === false && event.target.classList.contains('match') === false){ 
-		//display card's symbol
-		gameStarted = true;
 		clicks++;
 		displaySymbol(event);
 		openCard(event);
@@ -78,18 +68,19 @@ deck.addEventListener('click', function(event) {
 			timerInterval = setInterval('startTimer()', 1000);
          }
 		if (openedCards.length === 2){
-				//if the cards do match openedCards in the open position and empty openedCards
-				if (openedCards[0].className === openedCards[1].className){
-					// lock cards
-					lockCards(openedCards[0],openedCards[1]);
-				}
-					//if the cards do not match, remove the cards from the list and hide the card's symbol 
-				else {	
-					hideCards();	
-				}
+			//if the cards do match openedCards in the open position and empty openedCards...
+			if (openedCards[0].className === openedCards[1].className){
+				// ...lock cards
+				lockCards(openedCards[0],openedCards[1]);
+			}
+			//if the cards do not match, remove them from the list and hide the card's symbol 
+			else {	
+				hideCards();
+			}
 			// increment the move counter	
 			incrementCounter();
 		}
+		// if all cards match open dialog
 		setRating(counter);
 		if (matchedCards.length === 8){
 			openCongratulations();
@@ -108,7 +99,7 @@ repeatBtn.addEventListener('click', resetGame)
  */	
  
 playAgainBtn.addEventListener('click', function(){
-	closeCongratulations();
+	closeCongratulations()
 })
 	
 /*
@@ -140,7 +131,7 @@ function newTemplate(){
 }
 function setRating(counter){
 	starRating = 3;
-	if (counter > 13 && counter < 19) {
+	if (counter > 13 && counter <= 19) {
 		document.querySelector('.stars').children[2].firstChild.className = 'fa fa-star-o';
 		starRating = 2;
 	}else if (counter > 19 && counter < 25) {
@@ -153,7 +144,6 @@ function setRating(counter){
 }
 
 function startTimer() {
-	//let sec;
 	timerCounter++
 	sec = timerCounter;
 	if (timerCounter === 60) {
@@ -222,7 +212,10 @@ function resetGame(){
 	}
 	openedCards = [];
 	matchedCards = [];
-	gameStarted = false;
+	shuffle(cards);
+	newTemplate();
+	deck.innerHTML = "";
+	deck.appendChild(fragment);
 	stopTimer();
 	document.querySelector('.time').innerHTML = '00:00';
 	for (let i = 0; i < 3 ; i++){
@@ -231,11 +224,14 @@ function resetGame(){
 }
 
 function closeCongratulations () {
+	congratDlg.style.display="none";
 	congratDlg.classList.remove('open')
 	resetGame();
 }
 
 function openCongratulations () {
+	stopTimer();
+	congratDlg.style.display="block";
 	congratDlg.classList.add('open');
 	document.querySelector('.totMoves').innerHTML = "Your number of moves: " + counter 
 	document.querySelector('.starsRating').innerHTML = "You have still: " + starRating + " stars" 
